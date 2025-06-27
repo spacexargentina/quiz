@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Verificando respuestas...</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: #ffffff;
+      color: #000000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 22px;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .subtext {
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 30px;
+    }
+
+    .progress-container {
+      width: 80%;
+      max-width: 400px;
+      background-color: #eeeeee;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .progress-bar {
+      height: 20px;
+      width: 0%;
+      background-color: #000000;
+      transition: width 0.2s ease-in-out;
+    }
+
+    .percent-text {
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .dots {
+      font-size: 15px;
+      color: #666;
+      margin-top: 12px;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%   { opacity: 0.3; }
+      50%  { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+  <h2>VERIFICANDO TUS RESPUESTAS</h2>
+
+  <p class="subtext">
+    Aguarde... estamos analizando tus respuestas para ver si vas a ganar la antena Starlink MINI 🚀
+  </p>
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div class="percent-text" id="percent">0%</div>
+  <div class="dots">Procesando...</div>
+
+  <script>
+    let percent = 0;
+    const bar = document.getElementById('progressBar');
+    const text = document.getElementById('percent');
+
+    const interval = setInterval(() => {
+      percent++;
+      if (percent > 100) percent = 100;
+
+      bar.style.width = percent + '%';
+      text.textContent = percent + '%';
+
+      if (percent >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          window.location.href = 'felicitaciones.html'; // ✅ atualizado aqui
+        }, 300);
+      }
+    }, 85); // 100 passos × 85ms = ~8,5 segundos
+  </script>
+</body>
+</html>
