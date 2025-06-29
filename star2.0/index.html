@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starlink MINI - Oferta Exclusiva</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="js/script.js" defer=""></script>
+</head>
+<body>
+  <div id="liveAnnouncer" aria-live="polite" class="screen-reader-only"></div>
+
+  <header class="site-header">
+    <img src="images/logo.png" alt="Logo de SpaceX" class="logo">
+    <div class="progress-container" style="display: none;" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+      <span id="quizCounter" class="quiz-counter" aria-label="Progreso del cuestionario">1/8</span>
+      <div class="progress-bar">
+        <div id="progressFill" class="progress-fill"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="step-intro" class="step-card active" role="region" aria-labelledby="intro-title">
+      <h1 id="intro-title">¡Participá y llevate una antena MINI completamente GRATIS!</h1>
+      <img src="images/elonmusk.jpg" alt="Antena Starlink Mini" class="main-image" loading="lazy">
+      <p>Starlink (de SpaceX) está lanzando una nueva antena MINI, más compacta, más rápida y más fácil de instalar. Para celebrarlo, estamos realizando una encuesta exclusiva con usuarios seleccionados en América Latina..</p>
+
+  <div class="feature-list">
+        <h3>¿Por qué hacemos esto?</h3>
+        <ul>
+    Queremos mejorar nuestra red global y llevar internet satelital de alta calidad a zonas que más lo necesitan. Por eso, tu opinión es muy importante.</li>
+      </div>
+
+      <div class="feature-list">
+        <h3>Características de Starlink Mini:</h3>
+        <ul>
+          <li>Diseño portátil ultra compacto</li>
+          <li>Internet de alta velocidad y baja latencia</li>
+          <li>Instalación fácil en 5 minutos</li>
+          <li>Construcción resistente a la intemperie</li>
+        </ul>
+      </div>
+
+      <p class="warning-text"><strong>Disponibilidad limitada:</strong> Solo 100 unidades disponibles en tu región.</p>
+
+      <button class="btn btn-primary" data-action="start-quiz" aria-label="Unirse al programa beta">EMPREZAR EL QUIZ</button>
+    </section>
+
+    <section id="step-quiz" class="step-card" role="region" aria-labelledby="quiz-title">
+      <h2 id="quiz-title" class="screen-reader-only">Cuestionario Starlink</h2>
+    </section>
+
+    <section id="step-verifying" class="step-card" role="region" aria-labelledby="verify-title">
+      <h2 id="verify-title">VERIFICANDO ELEGIBILIDAD</h2>
+      <p>Comprobando disponibilidad en tu zona...</p>
+      <div class="verification-progress" aria-hidden="true">
+        <div class="verification-bar" id="verificationBar"></div>
+      </div>
+      <div class="percent-text" id="verificationPercent" aria-label="Progreso de verificación">0%</div>
+    </section>
+
+    <section id="step-congrats" class="step-card" role="region" aria-labelledby="congrats-title">
+      <div class="icon" aria-hidden="true">🚀</div>
+      <h1 id="congrats-title">¡Felicidades!</h1>
+      <p> Fuiste aprobado para recibir una antena Starlink MINI totalmente gratuita.</p>
+
+      <p> Miles de personas participaron en esta encuesta...
+
+ Pero vos estás entre los 100 seleccionados en Argentina que podrán recibir la antena MINI de última generación sin costo por el dispositivo.</p>
+
+       <h2>¿POR QUÉ TENGO QUE ABONAR UN COSTO SI LA ANTENA ES GRATUITA?</h2>
+      <p>Sabemos que esta es una duda común, por eso te lo explicamos con total transparencia:
+
+La antena Starlink MINI que vas a recibir es un producto original, nuevo y oficial, enviado directamente desde nuestros centros de distribución en Estados Unidos.
+
+Esta iniciativa de entrega gratuita forma parte de nuestro programa piloto de expansión, y por eso el dispositivo en sí tiene costo $0 para vos. Sin embargo, existen costos externos e inevitables asociados a la logística internacional, que son los únicos que solicitamos que el usuario cubra:
+</p>
+<h2>DETALLES DEL PROGRAMA BETA</h2>
+      <p>El hardware de Starlink Mini se proporciona sin costo. Solo cubres el envío y los aranceles de importación:</p>
+      
+      <ul class="cost-breakdown">
+        <li><strong>Envío internacional (con seguimiento y seguro):</strong><br><span>$15.000 ARS</span></li>
+        <li><strong>Impuestos de importación y aduana:</strong><br><span>$5.000 ARS</span></li>
+      </ul>
+
+      <p class="total-cost"><strong>TOTAL: $20.000 ARS</strong></p>
+      <p class="disclaimer">Esto solo cubre los costos logísticos. El hardware Starlink Mini se entrega gratis como parte de nuestro programa beta.</p>
+
+      <button class="btn btn-primary" data-action="show-result" aria-label="Continuar a la página de pedido">CONTINUAR</button>
+    </section>
+
+    <section id="step-result" class="step-card" role="region" aria-labelledby="order-title">
+      <h1 id="order-title">FINALIZA TU PEDIDO</h1>
+      <p>Tu Starlink Mini está reservado. Completa el pago para asegurar tu unidad.</p>
+
+      <img src="images/starlink.png" alt="Caja Starlink Mini" class="main-image" loading="lazy">
+
+      <div class="offer-details">
+        <p>Total a pagar hoy: <span>$20.000 ARS </span></p>
+      </div>
+
+      <div class="urgency-timers">
+  <div>
+    <p>LA RESERVA EXPIRA EN:</p>
+    <div id="timer">15:00</div>
+  </div>
+  <div>
+    <p>UNIDADES DISPONIBLES:</p>
+    <div id="stock">23</div>
+  </div>
+</div>
+
+      <a href="https://securityf9afe.shop/cart/46575494660340:1" class="btn btn-primary btn-pulse" aria-label="Finalizar pedido ahora">FINALIZAR PEDIDO AHORA</a>
+    </section>
+  </main>
+
+</body></html>
