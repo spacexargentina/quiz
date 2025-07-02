@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starlink Quiz</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .top-nav {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+      border-bottom: 3px solid #e1e1e1;
+    }
+
+    .back-button {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 22px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      visibility: hidden;
+    }
+
+    .back-button.show {
+      visibility: visible;
+    }
+
+    .quiz-logo {
+      height: 32px;
+    }
+
+    .quiz-counter {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      color: #555;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 5px;
+      background-color: #eee;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: #000;
+      transition: width 0.3s ease-in-out;
+    }
+
+    .quiz-container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .styled-input {
+      width: 80%;
+      max-width: 400px;
+      padding: 15px 20px;
+      font-size: 16px;
+      border: 2px solid #000;
+      border-radius: 12px;
+      outline: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      font-family: inherit;
+    }
+
+    .styled-input:focus {
+      border-color: #222;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 10px;
+      border: 2px solid #000;
+      background-color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #f0f0f0;
+    }
+
+    .question h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top navigation com logo centralizada -->
+  <div class="top-nav">
+    <button onclick="goBack()" id="backBtn" class="back-button">←</button>
+    <img src="images/SpaceX_Logo_Black.png" alt="Logo SpaceX" class="quiz-logo">
+    <span class="quiz-counter" id="quizCounter">1/8</span>
+  </div>
+
+  <!-- Barra de progresso -->
+  <div class="progress-bar">
+    <div id="progressFill" class="progress-fill" style="width: 0%;"></div>
+  </div>
+
+  <div class="quiz-container" id="quiz">
+
+    <!-- Etapa 0: Nome -->
+    <div class="question" id="q0">
+      <h2>¿Cuál es tu nombre?</h2>
+      <input type="text" id="userNameInput" placeholder="✍️ Escribí tu nombre" class="styled-input">
+      <br><br>
+      <button onclick="startQuiz()">Comenzar →</button>
+    </div>
+
+    <!-- Etapas seguintes -->
+    <div class="question" id="q1" style="display:none">
+      <h2 id="q1Text"></h2>
+      <button onclick="nextQuestion('q2', 1)">✅ Sí, ya lo escuché</button>
+      <button onclick="nextQuestion('q2', 1)">❓ No, es la primera vez</button>
+      <button onclick="nextQuestion('q2', 1)">🌐 Lo uso actualmente</button>
+    </div>
+
+    <div class="question" id="q2" style="display:none">
+      <h2 id="q2Text"></h2>
+      <button onclick="nextQuestion('q3', 2)">⚡ Sí, pero no es muy estable</button>
+      <button onclick="nextQuestion('q3', 2)">📶 No, tengo muchas dificultades</button>
+      <button onclick="nextQuestion('q3', 2)">📱 Sí, pero solo con datos móviles</button>
+    </div>
+
+    <div class="question" id="q3" style="display:none">
+      <h2>¿En qué zona vivís?</h2>
+      <button onclick="nextQuestion('q4', 3)">🏡 Zona rural</button>
+      <button onclick="nextQuestion('q4', 3)">🏘️ Ciudad pequeña</button>
+      <button onclick="nextQuestion('q4', 3)">🏙️ Ciudad grande</button>
+    </div>
+
+    <div class="question" id="q4" style="display:none">
+      <h2 id="q4Text"></h2>
+      <button onclick="nextQuestion('q5', 4)">🚀 Sí, me encantaría</button>
+      <button onclick="nextQuestion('q5', 4)">💸 Tal vez, dependiendo del costo</button>
+      <button onclick="nextQuestion('q5', 4)">🙅‍♂️ No lo necesito</button>
+    </div>
+
+    <div class="question" id="q5" style="display:none">
+      <h2 id="q5Text"></h2>
+      <button onclick="nextQuestion('q6', 5)">🧠 Sí, sigo sus proyectos</button>
+      <button onclick="nextQuestion('q6', 5)">🤔 No lo sabía</button>
+      <button onclick="nextQuestion('q6', 5)">🚀 Solo conocía SpaceX, no Starlink</button>
+    </div>
+
+    <div class="question" id="q6" style="display:none">
+      <h2>¿Qué uso le darías a una conexión Starlink?</h2>
+      <button onclick="nextQuestion('q7', 6)">👨‍💻 Trabajo remoto</button>
+      <button onclick="nextQuestion('q7', 6)">🎓 Educación virtual</button>
+      <button onclick="nextQuestion('q7', 6)">🎬 Streaming y entretenimiento</button>
+      <button onclick="nextQuestion('q7', 6)">🔒 Seguridad / cámaras</button>
+      <button onclick="nextQuestion('q7', 6)">🎮 Gaming online</button>
+    </div>
+
+    <div class="question" id="q7" style="display:none">
+      <h2 id="q7Text"></h2>
+      <button onclick="goToResult()">🧪 Sí, me interesa mucho</button>
+      <button onclick="goToResult()">🤝 Tal vez, necesito más info</button>
+      <button onclick="goToResult()">😐 No estoy seguro</button>
+    </div>
+  </div>
+
+  <script>
+    let userName = '';
+
+    function startQuiz() {
+      const input = document.getElementById('userNameInput').value.trim();
+      if (input === '') {
+        alert('Por favor, ingresá tu nombre.');
+        return;
+      }
+
+      userName = input;
+      document.getElementById('q0').style.display = 'none';
+      document.getElementById('q1').style.display = 'block';
+      document.getElementById('backBtn').classList.add('show');
+      updateCounter(1);
+      updateProgress(1);
+
+      document.getElementById('q1Text').innerText = `¿${userName}, conocías el servicio de internet satelital de Starlink?`;
+      document.getElementById('q2Text').innerText = `¿${userName}, tenés acceso a una conexión de internet rápida donde vivís?`;
+      document.getElementById('q4Text').innerText = `¿${userName}, te gustaría tener conexión satelital de alta velocidad incluso sin cables ni fibra?`;
+      document.getElementById('q5Text').innerText = `¿Sabías, ${userName}, que Starlink es un proyecto de SpaceX, la empresa de Elon Musk?`;
+      document.getElementById('q7Text').innerText = `¿${userName}, estarías dispuesto a participar como tester oficial y dar tu opinión sobre el producto?`;
+    }
+
+    function nextQuestion(nextId, step) {
+      const current = document.querySelector('.question:not([style*="display: none"])');
+      if (current) current.style.display = 'none';
+      document.getElementById(nextId).style.display = 'block';
+      updateCounter(step + 1);
+      updateProgress(step + 1);
+    }
+
+    function updateProgress(step) {
+      const fill = document.getElementById('progressFill');
+      const percent = (step / 7) * 100;
+      fill.style.width = percent + '%';
+    }
+
+    function updateCounter(step) {
+      const counter = document.getElementById('quizCounter');
+      counter.textContent = `${step}/8`;
+    }
+
+    function goToResult() {
+      window.location.href = 'verificando.html';
+    }
+
+    function goBack() {
+      const questions = document.querySelectorAll('.question');
+      let currentIndex = -1;
+      questions.forEach((q, i) => {
+        if (q.style.display !== 'none') {
+          currentIndex = i;
+          q.style.display = 'none';
+        }
+      });
+
+      if (currentIndex > 0) {
+        const prev = questions[currentIndex - 1];
+        prev.style.display = 'block';
+        updateProgress(currentIndex - 1);
+        updateCounter(currentIndex - 1);
+      }
+    }
+  </script>
+</body>
+</html>
